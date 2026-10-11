@@ -4,9 +4,9 @@ namespace drugov
 {
   int process()
   {
-    int N = 0;
-    int oldN = 0;
-    std::cin >> N;
+    int n = 0;
+    int old_n = 0;
+    std::cin >> n;
 
     if (!std::cin)
     {
@@ -14,7 +14,7 @@ namespace drugov
       return 1;
     }
 
-    if (N == 0)
+    if (n == 0)
     {
       std::cout << 0 << "\n" << 0 << "\n";
       return 0;
@@ -26,10 +26,10 @@ namespace drugov
     int max_six = 1;
     int cur_six = 1;
 
-    oldN = N;
-    std::cin >> N;
+    old_n = n;
+    std::cin >> n;
 
-    while (N != 0)
+    while (n != 0)
     {
       if (!std::cin)
       {
@@ -37,7 +37,7 @@ namespace drugov
         return 1;
       }
 
-      if (N == oldN)
+      if (n == old_n)
       {
         cur_four = cur_four + 1;
       }
@@ -51,7 +51,7 @@ namespace drugov
         max_four = cur_four;
       }
 
-      if (N >= oldN)
+      if (n >= old_n)
       {
         cur_six = cur_six + 1;
       }
@@ -65,8 +65,8 @@ namespace drugov
         max_six = cur_six;
       }
 
-      oldN = N;
-      std::cin >> N;
+      old_n = n;
+      std::cin >> n;
     }
 
     std::cout << max_four << "\n" << max_six << "\n";
