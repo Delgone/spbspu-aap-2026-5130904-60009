@@ -25,7 +25,6 @@ namespace drugov
 
     int max_four = 1;
     int cur_four = 1;
-
     int max_six = 1;
     int cur_six = 1;
 
@@ -83,7 +82,6 @@ namespace drugov
     }
 
     std::cout << max_four << "\n" << max_six << "\n";
-
     return 0;
   }
 }
