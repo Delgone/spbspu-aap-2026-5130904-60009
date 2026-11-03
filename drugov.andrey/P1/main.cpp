@@ -1,17 +1,20 @@
 #include <iostream>
+#include <limits>
 
 namespace drugov
 {
+  const int ERROR_INVALID_INPUT = 1;
+  const int ERROR_CALCULATION = 2;
+
   int process()
   {
     int n = 0;
     int old_n = 0;
-    std::cin >> n;
-
-    if (!std::cin)
+    
+    if (not (std::cin >> n))
     {
       std::cerr << "invalid input\n";
-      return 1;
+      return ERROR_INVALID_INPUT;
     }
 
     if (n == 0)
@@ -34,12 +37,17 @@ namespace drugov
       if (!std::cin)
       {
         std::cerr << "invalid input\n";
-        return 1;
+        return ERROR_INVALID_INPUT;
       }
 
       if (n == old_n)
       {
-        cur_four = cur_four + 1;
+        if (cur_four == std::numeric_limits<decltype(cur_four)>::max())
+        {
+          std::cerr << "overflow error\n";
+          return ERROR_CALCULATION;
+        }
+        cur_four++;
       }
       else
       {
@@ -53,7 +61,12 @@ namespace drugov
 
       if (n >= old_n)
       {
-        cur_six = cur_six + 1;
+        if (cur_six == std::numeric_limits<decltype(cur_six)>::max())
+        {
+          std::cerr << "overflow error\n";
+          return ERROR_CALCULATION;
+        }
+        cur_six++;
       }
       else
       {
@@ -79,4 +92,3 @@ int main()
 {
   return drugov::process();
 }
-
