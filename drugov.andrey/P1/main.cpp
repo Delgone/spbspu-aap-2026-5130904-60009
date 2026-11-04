@@ -10,8 +10,8 @@ namespace drugov
   {
     int n = 0;
     int old_n = 0;
-    
-    if (not (std::cin >> n))
+
+    if (not(std::cin >> n))
     {
       std::cerr << "invalid input\n";
       return ERROR_INVALID_INPUT;
@@ -41,7 +41,7 @@ namespace drugov
 
       if (n == old_n)
       {
-        if (cur_four == std::numeric_limits<decltype(cur_four)>::max())
+        if (cur_four == std::numeric_limits< decltype(cur_four) >::max())
         {
           std::cerr << "overflow error\n";
           return ERROR_CALCULATION;
@@ -60,7 +60,7 @@ namespace drugov
 
       if (n >= old_n)
       {
-        if (cur_six == std::numeric_limits<decltype(cur_six)>::max())
+        if (cur_six == std::numeric_limits< decltype(cur_six) >::max())
         {
           std::cerr << "overflow error\n";
           return ERROR_CALCULATION;
