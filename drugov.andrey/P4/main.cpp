@@ -6,6 +6,7 @@
 namespace drugov
 {
   const int error_memory = 1;
+  const int error_input = 1;
   const std::size_t latin_count = 26;
   const std::size_t initial_capacity = 16;
   const std::size_t growth_factor = 2;
@@ -104,6 +105,11 @@ namespace drugov
       }
       buf[size++] = c;
     }
+    if (size == 0 and in.fail())
+    {
+      delete[] buf;
+      return nullptr;
+    }
     buf[size] = '\0';
     return buf;
   }
@@ -119,8 +125,11 @@ namespace drugov
     try
     {
       line = readLine(in);
-      lat = new char[latin_count + 1]{};
-      uni = new char[length(line) + length(second_uni) + 1]{};
+      if (line != nullptr)
+      {
+        lat = new char[latin_count + 1]{};
+        uni = new char[length(line) + length(second_uni) + 1]{};
+      }
     }
     catch (const std::exception &)
     {
@@ -129,6 +138,12 @@ namespace drugov
       delete[] uni;
       err << "not enough memory\n";
       return error_memory;
+    }
+
+    if (line == nullptr)
+    {
+      err << "invalid input\n";
+      return error_input;
     }
 
     out << latTwo(line, second_lat, lat) << "\n";
