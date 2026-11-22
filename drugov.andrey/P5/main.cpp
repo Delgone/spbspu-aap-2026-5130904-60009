@@ -1,8 +1,8 @@
 #include <cstddef>
 #include <iostream>
 
-#include "shape.hpp"
 #include "base-types.hpp"
+#include "shape.hpp"
 
 namespace drugov
 {
@@ -199,19 +199,6 @@ namespace drugov
 
   int process()
   {
-    point_t scale_point = {0.0, 0.0};
-    double factor = 0.0;
-    if (not(std::cin >> scale_point.x >> scale_point.y >> factor))
-    {
-      std::cerr << "invalid input\n";
-      return error_input;
-    }
-    if (not(factor > 0.0))
-    {
-      std::cerr << "scale factor must be positive\n";
-      return error_input;
-    }
-
     const point_t rectangle_pos = {1.0, 2.0};
     const double rectangle_width = 4.0;
     const double rectangle_height = 2.0;
@@ -230,6 +217,20 @@ namespace drugov
 
     std::cout << "before scaling:\n";
     printShapes(shapes, count);
+
+    point_t scale_point = {0.0, 0.0};
+    double factor = 0.0;
+    if (not(std::cin >> scale_point.x >> scale_point.y >> factor))
+    {
+      std::cerr << "invalid input\n";
+      return error_input;
+    }
+    if (not(factor > 0.0))
+    {
+      std::cerr << "scale factor must be positive\n";
+      return error_input;
+    }
+
     scaleAll(shapes, count, scale_point, factor);
     std::cout << "after scaling:\n";
     printShapes(shapes, count);
